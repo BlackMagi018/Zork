@@ -7,7 +7,8 @@ from Weapon import Weapon
 class Ghouls(Monster):
 
     def __init__(self):
-        super().__init__(randint(40, 80), randint(15, 30))
+        self.name = "Ghoul"
+        super().__init__(self.name, randint(40, 80), randint(15, 30))
 
     def damage(self, weapon, atk):
         assert isinstance(Weapon, weapon)

@@ -6,6 +6,6 @@ class NerdBombs(Weapon):
 
     def __init__(self):
         text = "Nerd Bombs"
-        mod = uniform(3.5, 5)
+        mod = round(uniform(3.5, 5),2)
         ammo = 1
         super().__init__(text, mod, ammo)

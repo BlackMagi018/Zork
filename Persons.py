@@ -5,7 +5,8 @@ from Weapon import Weapon
 class Persons(Monster):
 
     def __init__(self):
-        super().__init__(100, -1)
+        self.name = "Person"
+        super().__init__(self.name, 100, -1)
 
     def damage(self, weapon, atk):
         assert isinstance(Weapon, weapon)

@@ -3,7 +3,8 @@ from Weapon import Weapon
 
 class Monster:
 
-    def __init__(self, hp, atk):
+    def __init__(self, name, hp, atk):
+        self.name = name
         self.health = hp
         self.attack = atk
         self.home = None

@@ -12,14 +12,14 @@ class Player:
     location = None
 
     def __init__(self):
-        x = HersheyKiss
+        x = HersheyKiss()
         self.arsenal.append(x)
         for i in range(0, 9):
             c = randint(0, 2)
             if c == 0:
-                x = SourStraws
+                x = SourStraws()
             elif c == 1:
-                x = ChocolateBar
+                x = ChocolateBar()
             else:
-                x = NerdBombs
+                x = NerdBombs()
             self.arsenal.append(x)

@@ -23,7 +23,7 @@ class Neighborhood:
             last = current
 
     def createMonster(self, house: Home):
-        x = randint(0, 10)
+        x = randint(1, 5)
         for i in range(0, x):
             type = randint(0, 4)
             if type == 0:

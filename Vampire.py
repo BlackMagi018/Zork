@@ -8,7 +8,8 @@ from Weapon import Weapon
 class Vampire(Monster):
 
     def __init__(self):
-        super().__init__(randint(100, 200), randint(10, 20))
+        self.name = "Vampire"
+        super().__init__(self.name, randint(100, 200), randint(10, 20))
 
     def damage(self, weapon, atk):
         assert isinstance(Weapon, weapon)

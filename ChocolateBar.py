@@ -6,6 +6,6 @@ class ChocolateBar(Weapon):
 
     def __init__(self):
         text = "Chocolate Bar"
-        mod = uniform(2, 2.4)
+        mod = round(uniform(2, 2.4),2)
         ammo = 4
         super().__init__(text, mod, ammo)

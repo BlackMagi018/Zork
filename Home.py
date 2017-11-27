@@ -16,7 +16,7 @@ class Home:
             monsters.damage(weapon, player.attack)
 
     def resurrect(self, monster):
-        assert isinstance(Monster,monster)
+        assert isinstance(Monster, monster)
         mid = self.thrall.index(monster)
         person = Persons
         self.thrall.__setitem__(mid, person)
