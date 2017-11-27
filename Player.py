@@ -9,6 +9,7 @@ class Player:
     health = randint(100, 125)
     attack = randint(10, 20)
     arsenal = []
+    location = None
 
     def __init__(self):
         x = HersheyKiss

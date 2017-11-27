@@ -1,9 +1,5 @@
-from random import randint
-from Ghouls import Ghouls
-from Werewolves import Werewolves
-from Vampire import Vampire
+from Monster import Monster
 from Persons import Persons
-from Zombies import Zombies
 
 
 class Home:
@@ -13,16 +9,14 @@ class Home:
         self.thrall = []
         self.left = None
         self.right = None
-        x = randint(0, 10)
-        for i in range(0, x):
-            monster = randint(0, 4)
-            if monster == 0:
-                self.thrall.append(Persons)
-            elif monster == 1:
-                self.thrall.append(Zombies)
-            elif monster == 2:
-                self.thrall.append(Vampire)
-            elif monster == 3:
-                self.thrall.append(Ghouls)
-            elif monster == 4:
-                self.thrall.append(Werewolves)
+
+    def damage(self, weapon, player):
+        for monsters in self.thrall:
+            assert isinstance(monsters, Monster)
+            monsters.damage(weapon, player.attack)
+
+    def resurrect(self, monster):
+        assert isinstance(Monster,monster)
+        mid = self.thrall.index(monster)
+        person = Persons
+        self.thrall.__setitem__(mid, person)
