@@ -9,9 +9,7 @@ class Monster:
         self.attack = atk
         self.home = None
 
-    def damage(self, weapon, atk):
-        assert isinstance(Weapon, weapon)
-        assert isinstance(int, atk)
+    def damage(self, weapon: Weapon, atk : int):
         self.health -= atk * weapon.mod
         if self.health <= 0:
             self.home.resurrect(self)

@@ -20,7 +20,10 @@ class Home:
 
     def revenge(self, player: Player):
         for monsters in self.thrall:
-            player.health -= monsters.attack
+            if monsters.name == "Persons":
+                player.health += 1
+            else:
+                player.health -= monsters.attack
 
     def resurrect(self, monster: Monster):
         mid = self.thrall.index(monster)

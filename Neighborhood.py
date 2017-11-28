@@ -30,7 +30,7 @@ class Neighborhood:
         x = randint(1, 5)
         house.population = 0
         for i in range(0, x):
-            m_type = randint(0, 4)
+            m_type = randint(0, 1)
             if m_type == 0:
                 monster = Persons()
                 monster.home = house

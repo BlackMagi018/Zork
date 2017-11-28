@@ -1,6 +1,8 @@
+from Monster import Monster
 from Player import Player
 from Neighborhood import Neighborhood
 from Home import Home
+from Weapon import Weapon
 
 
 class Game:
@@ -51,7 +53,8 @@ class Game:
     def getHouseStatus(self):
         print("House Population: " + str(self.player.location.population))
         for monsters in self.player.location.thrall:
-            print(str(monsters.name) + ": Health: " + str(monsters.health))
+            if Monster.__instancecheck__(monsters):
+                print(str(monsters.name) + ": Health: " + str(monsters.health))
         print(" ")
 
     def getPlayerStatus(self):
@@ -63,6 +66,14 @@ class Game:
             print(str(i) + ": Name: " + weapon.name + " Mod: " + str(weapon.mod) + " Ammo: " + str(weapon.ammo))
             i = i + 1
         print(" ")
+
+    def getHelp(self):
+        print("enter house - enter the current house")
+        print("move left - move to the next house to your left if possible")
+        print("move right - move to the next house to your right if possible")
+        print("player status - get the current status of player character")
+        print("house status - get the current status of the current house")
+        print("help - pulls up help sheet\n")
 
     def checkPop(self):
         if self.Map.totalMonsters == 0:
@@ -78,12 +89,30 @@ class Game:
               "and turn everyone back to normal.\n")
 
 
+    def Command(self,text):
+        if text == "enter house":
+            self.enterHouse()
+        elif text == "move left":
+            self.moveLeft()
+        elif text == "move right":
+            self.moveRight()
+        elif text == "player status":
+            self.getPlayerStatus()
+        elif text == "house status":
+            self.getHouseStatus()
+        elif text == "help":
+            self.getHelp()
+        else:
+            print("Invalid Entry")
+            self.getHelp()
+
+
 if __name__ == '__main__':
     Game = Game()
     Game.intro()
     Game.checkPop()
     while not Game.GameOver:
-        Game.getPlayerStatus()
-        Game.enterHouse()
-        Game.GameOver = True
+        text = input("What would you like to do\n")
+        text.lower()
+        Game.Command(text)
     print("Done")
