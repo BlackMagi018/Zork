@@ -32,7 +32,9 @@ class Player:
         x.ammo -= 1
         if x.ammo > 0:
             self.arsenal.__setitem__(i, x)
-        else:
+        elif x.ammo == 0:
             self.arsenal.remove(x)
+        else:
+            pass
         print("You used a " + x.name)
         return x

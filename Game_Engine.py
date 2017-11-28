@@ -26,13 +26,18 @@ class Game:
                 candy = self.player.useWeapon(i)
                 self.player.location.damage(candy, self.player.attack)
                 self.checkPop()
-                self.player.location.revenge(self.player)
-                if self.player.health <= 0:
-                    print("Your efforts though valiant were not enough you were consumed by your former neighbors")
-                    self.GameOver = True
+                if self.GameOver:
+                    print("All your neighbors rejoice as the Hallow's Eve Curse has been lifted from everyone")
+                    print("Congratulations! You WIN")
                     fighting = False
                 else:
-                    print("Player Health: " + str(self.player.health))
+                    self.player.location.revenge(self.player)
+                    if self.player.health <= 0:
+                        print("Your efforts though valiant were not enough you were consumed by your former neighbors")
+                        self.GameOver = True
+                        fighting = False
+                    else:
+                        print("Player Health: " + str(self.player.health))
             else:
                 print("Invalid Entry")
 
@@ -73,6 +78,7 @@ class Game:
         print("move right - move to the next house to your right if possible")
         print("player status - get the current status of player character")
         print("house status - get the current status of the current house")
+        print("quit - end the game")
         print("help - pulls up help sheet\n")
 
     def checkPop(self):
@@ -102,6 +108,8 @@ class Game:
             self.getHouseStatus()
         elif text == "help":
             self.getHelp()
+        elif text == "quit":
+            self.GameOver = True
         else:
             print("Invalid Entry")
             self.getHelp()
@@ -115,4 +123,4 @@ if __name__ == '__main__':
         text = input("What would you like to do\n")
         text.lower()
         Game.Command(text)
-    print("Done")
+    print("Goodbye")
