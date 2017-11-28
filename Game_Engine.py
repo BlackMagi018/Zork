@@ -1,17 +1,23 @@
-from Monster import Monster
-from Player import Player
-from Neighborhood import Neighborhood
-from Home import Home
+from Monster import Monster  # codee uses Monster.Monster
+from Player import Player  # code uses Player.Player
+from Neighborhood import Neighborhood  # code uses Neighborhood.Neighborhood
+from Home import Home  # code uses Home.Home
 
 
-class Game:
+class Game_Engine:
+    """Runs the Zork Games and handles the logic"""
+
     def __init__(self):
+        """Constructor for the Game_Engine class"""
+
         self.player = Player()
         self.Map = Neighborhood()
         self.player.location = self.Map.grid.__getitem__(0)
         self.GameOver = False
 
     def enterHouse(self):
+        """Initiates fight mechanic with monsters in house"""
+
         fighting = True
         print("Wild Monsters have appeared")
         while fighting is True:
@@ -41,6 +47,8 @@ class Game:
                 print("Invalid Entry")
 
     def moveLeft(self):
+        """Moves player to the house to the left"""
+
         assert isinstance(self.player.location, Home)
         if self.player.location.left is not None:
             self.player.location = self.player.location.left
@@ -48,6 +56,8 @@ class Game:
             print("The player can't move left")
 
     def moveRight(self):
+        """Moves player to the house to the right"""
+
         assert isinstance(self.player.location, Home)
         if self.player.location.right is not None:
             self.player.location = self.player.location.right
@@ -55,15 +65,19 @@ class Game:
             print("The player can't move right")
 
     def getHouseStatus(self):
+        """Prints the Home's Monster Pop and Monster Info"""
+
         print("House Population: " + str(self.player.location.population))
-        for monsters in self.player.location.thrall:
+        for monsters in self.player.__location.thrall:
             if Monster.__instancecheck__(monsters):
                 print(str(monsters.name) + ": Health: " + str(monsters.health))
         print(" ")
 
     def getPlayerStatus(self):
-        print("Health: ", self.player.health)
-        print("Attack: ", self.player.attack)
+        """Prints player stats and arsenal contents"""
+
+        print("Health: ", self.player.__getattribute__("health"))
+        print("Attack: ", self.player.__getattribute__("attack"))
         print("Arsenal:")
         i = 1
         for weapon in self.player.arsenal:
@@ -72,6 +86,8 @@ class Game:
         print(" ")
 
     def getMapStatus(self):
+        """Prints data on the entire neighborhood"""
+
         i = 1
         print("Current House: House " + str(self.Map.grid.index(self.player.location) + 1))
         for house in self.Map.grid:
@@ -79,6 +95,8 @@ class Game:
             i += 1
 
     def getHelp(self):
+        """Prints Help screen"""
+
         print("enter house - enter the current house")
         print("move left - move to the next house to your left if possible")
         print("move right - move to the next house to your right if possible")
@@ -89,10 +107,14 @@ class Game:
         print("quit - end the game\n")
 
     def checkPop(self):
+        """Check to see if all monsters are defeated"""
+
         if self.Map.totalMonsters == 0:
             self.GameOver = True
 
     def intro(self):
+        """Prints intro text"""
+
         print("Welecome to Zork\n")
         print("It seemed like a normal Halloween Eve. You bought a lot of candy, ate a lot of candy" +
               " and went to bed early. You had a lot trick-or-treating to do the next day.\n" +
@@ -101,30 +123,33 @@ class Game:
               "Somehow you missed the tainted candy; it is therefore up to you to save your neighborhood "
               "and turn everyone back to normal.\n")
 
-    def Command(self,text):
-        if text == "enter house":
+    def Command(self, command):
+        """Reads inputs for accepted commands"""
+
+        if command == "enter house":
             self.enterHouse()
-        elif text == "move left":
+        elif command == "move left":
             self.moveLeft()
-        elif text == "move right":
+        elif command == "move right":
             self.moveRight()
-        elif text == "player status":
+        elif command == "player status":
             self.getPlayerStatus()
-        elif text == "house status":
+        elif command == "house status":
             self.getHouseStatus()
-        elif text == "help":
+        elif command == "help":
             self.getHelp()
-        elif text == "quit":
+        elif command == "quit":
             self.GameOver = True
-        elif text == "show map":
+        elif command == "show map":
             self.getMapStatus()
         else:
             print("Invalid Entry")
             self.getHelp()
 
 
+"""Starts the Zork Game"""
 if __name__ == '__main__':
-    Game = Game()
+    Game = Game_Engine()
     Game.intro()
     Game.checkPop()
     while not Game.GameOver:
