@@ -10,10 +10,8 @@ class Zombies(Monster):
         self.name = "Zombie"
         super().__init__(self.name, randint(50, 100), randint(0, 10))
 
-    def damage(self, weapon, atk):
-        assert isinstance(Weapon, weapon)
-        assert isinstance(int, atk)
-        if isinstance(SourStraws,weapon):
+    def damage(self, weapon: Weapon, atk: int):
+        if weapon.name == "Sour Straws":
             self.health -= atk * 5
             if self.health <= 0:
                 self.home.resurrect(self)

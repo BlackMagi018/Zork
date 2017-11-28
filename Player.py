@@ -23,3 +23,16 @@ class Player:
             else:
                 x = NerdBombs()
             self.arsenal.append(x)
+
+    def useWeapon(self, i: int):
+        try:
+            x = self.arsenal[i]
+        except IndexError:
+            x = self.arsenal[0]
+        x.ammo -= 1
+        if x.ammo > 0:
+            self.arsenal.__setitem__(i, x)
+        else:
+            self.arsenal.remove(x)
+        print("You used a " + x.name)
+        return x

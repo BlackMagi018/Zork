@@ -1,5 +1,7 @@
 from Monster import Monster
 from Persons import Persons
+from Weapon import Weapon
+from Player import Player
 
 
 class Home:
@@ -9,14 +11,20 @@ class Home:
         self.thrall = []
         self.left = None
         self.right = None
+        self.population = 0
+        self.grid = None
 
-    def damage(self, weapon, player):
+    def damage(self, weapon: Weapon, attack: int):
         for monsters in self.thrall:
-            assert isinstance(monsters, Monster)
-            monsters.damage(weapon, player.attack)
+            monsters.damage(weapon, attack)
 
-    def resurrect(self, monster):
-        assert isinstance(Monster, monster)
+    def revenge(self, player: Player):
+        for monsters in self.thrall:
+            player.health -= monsters.attack
+
+    def resurrect(self, monster: Monster):
         mid = self.thrall.index(monster)
         person = Persons
         self.thrall.__setitem__(mid, person)
+        self.population -= 1
+        self.grid.totalMonsters -= 1

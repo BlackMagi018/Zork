@@ -11,10 +11,8 @@ class Vampire(Monster):
         self.name = "Vampire"
         super().__init__(self.name, randint(100, 200), randint(10, 20))
 
-    def damage(self, weapon, atk):
-        assert isinstance(Weapon, weapon)
-        assert isinstance(int, atk)
-        if isinstance(ChocolateBar, weapon):
+    def damage(self, weapon: Weapon, atk: int):
+        if weapon.name == "Chocolate Bar":
             self.health += 0
         else:
             self.health -= atk * weapon.mod

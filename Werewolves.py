@@ -11,10 +11,8 @@ class Werewolves(Monster):
         self.name = "Werewolf"
         super().__init__(self.name, 200, randint(0, 40))
 
-    def damage(self, weapon, atk):
-        assert isinstance(Weapon, weapon)
-        assert isinstance(int, atk)
-        if isinstance(ChocolateBar, weapon) | isinstance(SourStraws, weapon):
+    def damage(self, weapon: Weapon, atk: int):
+        if weapon.name == "Chocolate Bar" or weapon.name == "Sour Straws":
             self.health -= 0
         else:
             self.health -= atk * weapon.mod
