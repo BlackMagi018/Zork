@@ -1,6 +1,5 @@
 from random import randint
 from Monster import Monster
-from SourStraws import SourStraws
 from Weapon import Weapon
 
 

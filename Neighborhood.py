@@ -1,36 +1,34 @@
+from random import randint
 from Ghouls import Ghouls
-from Werewolves import Werewolves
-from Vampire import Vampire
 from Home import Home
 from Persons import Persons
+from Vampire import Vampire
+from Werewolves import Werewolves
 from Zombies import Zombies
-from random import randint
 
 
 class Neighborhood:
-
     totalMonsters = 0
 
     def __init__(self):
         self.grid = []
         houses = randint(3, 6)
         last = None
-        for i in range(0, 1):
+        for i in range(0, houses):
             current = Home()
             self.createMonster(current)
             current.grid = self
-            self.grid.append(current)
-            # if last is not None:
-            #     last.right = current
-            #     current.left = last
-            #     self.grid.append(last)
-            # last = current
+            if last is not None:
+                last.right = current
+                current.left = last
+                self.grid.append(last)
+            last = current
 
     def createMonster(self, house: Home):
         x = randint(1, 5)
         house.population = 0
         for i in range(0, x):
-            m_type = randint(0, 1)
+            m_type = randint(0, 4)
             if m_type == 0:
                 monster = Persons()
                 monster.home = house
@@ -56,4 +54,3 @@ class Neighborhood:
                 monster.home = house
                 house.thrall.append(monster)
         self.totalMonsters += house.population
-

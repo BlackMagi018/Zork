@@ -2,7 +2,6 @@ from Monster import Monster
 from Player import Player
 from Neighborhood import Neighborhood
 from Home import Home
-from Weapon import Weapon
 
 
 class Game:
@@ -69,8 +68,15 @@ class Game:
         i = 1
         for weapon in self.player.arsenal:
             print(str(i) + ": Name: " + weapon.name + " Mod: " + str(weapon.mod) + " Ammo: " + str(weapon.ammo))
-            i = i + 1
+            i += 1
         print(" ")
+
+    def getMapStatus(self):
+        i = 1
+        print("Current House: House " + str(self.Map.grid.index(self.player.location) + 1))
+        for house in self.Map.grid:
+            print("House " + str(i) + ": Monster Population " + str(house.population))
+            i += 1
 
     def getHelp(self):
         print("enter house - enter the current house")
@@ -78,8 +84,9 @@ class Game:
         print("move right - move to the next house to your right if possible")
         print("player status - get the current status of player character")
         print("house status - get the current status of the current house")
-        print("quit - end the game")
-        print("help - pulls up help sheet\n")
+        print('show map - get the current info on neighbor hood')
+        print("help - pulls up help sheet")
+        print("quit - end the game\n")
 
     def checkPop(self):
         if self.Map.totalMonsters == 0:
@@ -93,7 +100,6 @@ class Game:
               "Batches of bad candy had transformed your friends and neighbors into all sorts\nof crazy monsters. "
               "Somehow you missed the tainted candy; it is therefore up to you to save your neighborhood "
               "and turn everyone back to normal.\n")
-
 
     def Command(self,text):
         if text == "enter house":
@@ -110,6 +116,8 @@ class Game:
             self.getHelp()
         elif text == "quit":
             self.GameOver = True
+        elif text == "show map":
+            self.getMapStatus()
         else:
             print("Invalid Entry")
             self.getHelp()
