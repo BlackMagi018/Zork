@@ -1,8 +1,6 @@
-from Monster import Monster
 from Player import Player
 from Neighborhood import Neighborhood
 from Home import Home
-from Weapon import Weapon
 
 
 class Game:
@@ -35,7 +33,6 @@ class Game:
                     print("Player Health: " + str(self.player.health))
             else:
                 print("Invalid Entry")
-
 
     def moveLeft(self):
         assert isinstance(self.player.location, Home)
@@ -74,6 +71,7 @@ class Game:
 
 if __name__ == '__main__':
     Game = Game()
+    Game.checkPop()
     while not Game.GameOver:
         Game.getPlayerStatus()
         Game.enterHouse()

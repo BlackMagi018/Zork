@@ -28,27 +28,30 @@ class Neighborhood:
 
     def createMonster(self, house: Home):
         x = randint(1, 5)
-        house.population = x
-        for i in range(0, 1):
-            m_type = randint(0, 0)
+        house.population = 0
+        for i in range(0, x):
+            m_type = randint(0, 4)
             if m_type == 0:
-                house.population -= 1
                 monster = Persons()
                 monster.home = house
                 house.thrall.append(monster)
             elif m_type == 1:
+                house.population += 1
                 monster = Zombies()
                 monster.home = house
                 house.thrall.append(monster)
             elif m_type == 2:
+                house.population += 1
                 monster = Vampire()
                 monster.home = house
                 house.thrall.append(monster)
             elif m_type == 3:
+                house.population += 1
                 monster = Ghouls()
                 monster.home = house
                 house.thrall.append(monster)
             elif m_type == 4:
+                house.population += 1
                 monster = Werewolves()
                 monster.home = house
                 house.thrall.append(monster)
