@@ -43,7 +43,7 @@ class Neighborhood:
             house - Home object
         """
 
-        x = randint(1, 5)
+        x = randint(1, 10)
         house.population = 0
         for i in range(0, x):
             m_type = randint(0, 4)
